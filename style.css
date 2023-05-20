@@ -4,7 +4,7 @@
 }
 
 body {
-    background: url(bg1.jpg) repeat center;
+    background: url(bg1.jpg) no-repeat center;
     background-size: cover;
     height: 100vh;
     display: grid;
@@ -29,10 +29,12 @@ body {
     /* left: 47vw; */
     z-index: 100;
     font-size: 2rem;
-    background-color: rgb(245, 99, 99);
+    background-color: rgb(34, 114, 72);
     color: white;
-    padding: 5px;
-    border-radius: 20px;
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8%;
     cursor: pointer;
 }
 
@@ -102,11 +104,11 @@ body {
 
 .ecarimg {
     width: 80px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .mycarimg {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 80px;
 }
 
