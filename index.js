@@ -3,6 +3,9 @@ document.getElementById("start").addEventListener("click", function () {
     document.getElementById("start").style.display = 'none'
     document.getElementById("road").style.animation = 'roadanimation 20s linear infinite'
 
+    let bulletActive = false;
+
+
     //collision sound 
     document.getElementById("collision-sound").play();
 
@@ -28,14 +31,14 @@ document.getElementById("start").addEventListener("click", function () {
     }, 4000)
 
 
+    let t = 15;
+    let l = 0;
+    let n = 0;
     document.getElementById("enemycar1").style.animation = 'ecar1 3s linear infinite'
     document.getElementById("enemycar2").style.animation = 'ecar2 6s linear infinite'
     document.getElementById("enemycar3").style.animation = 'ecar3 5s linear infinite'
     document.getElementById("enemycar4").style.animation = 'ecar4 4s linear infinite'
 
-
-    let t = 15
-    let l = 0
 
     window.addEventListener("keydown", function (x) {
 
@@ -55,17 +58,29 @@ document.getElementById("start").addEventListener("click", function () {
         if (x.keyCode == 68) {
             l = l + 1
             // alert("w")
-        }
+        }    
+        
+        if (x.keyCode === 32) {
+            if (collisionDetected && !bulletActive) {
+              bulletActive = true;
+              fireBullet();
+            }
+          }
+
+        
         document.getElementById("mycar").style.top = `${t}vh`
         document.getElementById("mycar").style.left = `${l}vw`
+     
     })
 
     n = 0
+    
+
     setInterval(() => {
 
+        
         document.getElementById("score").innerText = `Score : ${n}`
         n = n + 1
-
 
 
         var ecar1_left = Math.abs(document.getElementById("ecarimg1").getBoundingClientRect().left);
@@ -111,6 +126,7 @@ document.getElementById("start").addEventListener("click", function () {
             document.getElementById("collision-sound").play();
             
         }
+
         if (((ecar2_left < mycar_left && mycar_left < ecar2_right) || (ecar2_left < mycar_right && mycar_right < ecar2_right)) && ((ecar2_top < mycar_top && mycar_top < ecar2_bottom) || (ecar2_top < mycar_bottom && mycar_bottom < ecar2_bottom))) {
            
             setTimeout(() => {
@@ -139,15 +155,11 @@ document.getElementById("start").addEventListener("click", function () {
             document.getElementById("collision-sound").play();
         }
 
-    }, 100)
+        if (collisionDetected && !bulletActive) {
+            bulletActive = true;
+            fireBullet();
+        }
 
-    // function crash() {
-      
-    //     setTimeout(() => {
-    //         alert(`GAME OVER!`);
-    //         location.reload();
-    //     }, 100);
-    //     document.getElementById("collision-sound").play();
-    // }
+    }, 100)
 
 })
