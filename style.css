@@ -115,6 +115,9 @@ body {
 
 }
 
+i{
+    font-size: 10px;
+}
 .bullet {
     position: absolute;
     width: 30px;
